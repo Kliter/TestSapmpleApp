@@ -37,13 +37,6 @@ jobs:
 
 workflows:
   version: 2.1
-  helloworld:
-    jobs:
-      - build
-      - commit
-      - acceptance
-      - manual_test
-      - release
   deployment_pipeline:
     jobs:
       - commit
