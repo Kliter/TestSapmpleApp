@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "de.mannodermaus.android-junit5"
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        applicationId "com.kl.testsampleapp"
+        minSdkVersion 26
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArgument "runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude "META-INF.md"
+        exclude "META-INF/LICENSE-notice.md"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        junitPlatform {
+            instrumentationTests.integrityCheckEnabled = false
+
+        }
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.10.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // JUnit Jupiter
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.4.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.2.0"
+    testRuntimeOnly "org.junit.jupiter:junit-junit-jupiter-params:5.2.0"
+    testRuntimeOnly "org.junit.vitage:junit-vintage-eingine:5.2.0"
+    androidTestImplementation "org.junit.jupiter:junit-jupiter-api:5.4.2"
+    androidTestImplementation "org.junit.jupiter:junit-jupiter-params:5.2.0"
+    androidTestImplementation "junit:junit:4.12"
+    androidTestRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.4.2"
+    androidTestRuntimeOnly "org.junit.platform:junit-platform-runner:1.4.2"
+    androidTestRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.2.0"
+
+
+    // Mannodermause
+    androidTestImplementation "de.mannodermaus.junit5:android-test-core:1.0.0"
+    androidTestRuntimeOnly "de.mannodermaus.junit5:android-instrumentation-test-runner:1.0.0"
+
+    // Mockito
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1'
+    androidTestImplementation 'org.mockito:mockito-android:2.22.0'
+
+    // Robolectric
+    testImplementation 'androidx.test:runner:1.2.0'
+    testImplementation 'org.robolectric:robolectric:4.0'
+
+    // Room
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    // Rx
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.17'
+
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:3.11.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+}
