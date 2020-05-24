@@ -40,3 +40,7 @@ workflows:
   helloworld:
     jobs:
       - build
+      - commit
+      - acceptance
+      - manual_test
+      - release
