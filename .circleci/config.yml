@@ -1,5 +1,5 @@
 version: 2.1
-jobs:
+jobs: #先にjobを定義して、workflowで後から使用する。
   build:
     working_directory: ~/code
     docker:
@@ -7,9 +7,15 @@ jobs:
     steps:
       - checkout
       - run: echo "Hello World!"
+      - restore_cache: #キャッシュのリストア
+          key: jars-{{checksum "build.gradle"}}-{{checksum "app/build.gradle"}}
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+      - run:
+          paths:
+            - ~/.gradle
+            - key: jars-{{checksum "build.gradle"}}-{{checksum "app/build.gradle"}} #ダウンロードしたライブラリをキャッシュできる。
       - run:
           name: Run Compile
           command: ./gradlew assembleDebug
