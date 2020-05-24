@@ -48,6 +48,11 @@ workflows:
     jobs:
       - commit
       - acceptance:
-        requires:
-          - commit
+          requires:
+            - commit
       - manual_test:
+          requires:
+            - acceptance
+      - release:
+          requires:
+            - manual_test
