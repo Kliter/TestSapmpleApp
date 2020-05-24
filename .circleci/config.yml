@@ -8,21 +8,21 @@ jobs:
       - run: echo "Hello World!"
 
   commit:
-    working_derectory: ~/code
+    working_directory: ~/code
     docker:
       - image: circleci/android:api-28-alpha
     steps:
       - run: echo "commit"
 
   acceptance:
-    working_derectory: ~/code
+    working_directory: ~/code
     docker:
       - image: circleci/android:api-28-alpha
     steps:
       - run: echo "acceptance"
 
   manual_test:
-    working_derectory: ~/code
+    working_directory: ~/code
     docker:
       - image: circleci/android:api-28-alpha
     steps:
