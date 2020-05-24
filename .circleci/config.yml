@@ -1,8 +1,9 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/code
     docker:
-        - image: circleci/node:4.8.2
+      - image: circleci/android:api-28-alpha
     steps:
       - checkout
       - run: echo "Hello World!"
