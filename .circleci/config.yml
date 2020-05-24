@@ -7,6 +7,11 @@ jobs:
     steps:
       - checkout
       - run: echo "Hello World!"
+          name: Download Dependencies
+          command: ./gradlew androidDependencies
+      - run:
+          name: Run Compile
+          command: ./gradlew assembleDebug
 
   commit:
     working_directory: ~/code
