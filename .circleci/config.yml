@@ -19,6 +19,9 @@ jobs: #先にjobを定義して、workflowで後から使用する。
       - run:
           name: Run Compile
           command: ./gradlew assembleDebug
+      - run:
+          name: Run Inspection
+          command: ./gradlew lint
 
   commit:
     working_directory: ~/code
@@ -26,6 +29,7 @@ jobs: #先にjobを定義して、workflowで後から使用する。
       - image: circleci/android:api-28-alpha
     steps:
       - run: echo "commit"
+      - run: build
 
   acceptance:
     working_directory: ~/code
