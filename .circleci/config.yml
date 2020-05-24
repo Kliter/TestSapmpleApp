@@ -1,5 +1,7 @@
 version: 2.1
-jobs:
+orbs:
+  welcome: circleci/welcome-orb@0.4.1
+workflows:
   build:
     docker:
       -image: circle/node:4.8.2
