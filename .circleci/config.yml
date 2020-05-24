@@ -44,3 +44,10 @@ workflows:
       - acceptance
       - manual_test
       - release
+  deployment_pipeline:
+    jobs:
+      - commit
+      - acceptance:
+        requires:
+          - commit
+      - manual_test:
